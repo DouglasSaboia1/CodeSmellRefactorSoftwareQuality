@@ -1,28 +1,31 @@
 package org.example.studycards;
 
+import java.util.function.Supplier;
+
 public class Card {
-    private String question;
-    private String answer;
+
+    private Supplier<String> questionSupplier;
+    private Supplier<String> answerSupplier;
 
     public Card(String question, String answer) {
-        this.question = question;
-        this.answer = answer;
+        this.questionSupplier = () -> question;
+        this.answerSupplier = () -> answer;
     }
 
     public String getQuestion() {
-        return question;
+        return questionSupplier.get();
     }
 
     public void setQuestion(String question) {
-        this.question = question;
+        this.questionSupplier = () -> question;
     }
 
     public String getAnswer() {
-        return answer;
+        return answerSupplier.get();
     }
 
     public void setAnswer(String answer) {
-        this.answer = answer;
+        this.answerSupplier = () -> answer;
     }
 
     public void edit(String question, String answer) {
