@@ -24,10 +24,12 @@ public class MaterialSearch implements Search<String>{
     private List<String> handleMaterialSearch(String text){
         List<String> results = new ArrayList<>();
         results.addAll(StudyMaterial.getStudyMaterial().searchInMaterials(text));
-        this.searchLog.addSearchHistory(text);
-        this.searchLog.setNumUsages(this.searchLog.getNumUsages() + 1);
+
+        this.searchLog.logSearch(text); // Substitui addSearchHistory + setNumUsages
+
         results.add("\nLogged in: " + this.searchLog.getLogName());
         return results;
     }
+
 
 }
