@@ -30,11 +30,13 @@ public class GeneralSearch implements Search<String> {
         results.addAll(TodoTracker.getInstance().searchInTodos(text));
         results.addAll(StudyMaterial.getStudyMaterial().searchInMaterials(text));
         results.addAll(StudyTaskManager.getStudyTaskManager().searchInRegistries(text));
-        this.searchLog.addSearchHistory(text);
-        this.searchLog.setNumUsages(this.searchLog.getNumUsages() + 1);
+
+        this.searchLog.logSearch(text); // Substitui addSearchHistory + setNumUsages
+
         results.add("\nLogged in: " + this.searchLog.getLogName());
         return results;
     }
+
 
 
 
